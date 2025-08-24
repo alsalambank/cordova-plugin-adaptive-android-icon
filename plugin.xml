@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-adaptive-android-icon"
+    version="1.0.0">
+    <name>CordovaAndroidAdaptiveIconPlugin</name>
+    <description>Cordova Plugin for configuring adaptive Android icons.</description>
+    <license>MIT</license>
+    <keywords>cordova,adaptive,icon,android</keywords>
+
+    <engines>
+        <engine name="cordova" version=">=12.0.0"/>
+        <engine name="cordova-android" version=">=12.0.0"/>
+    </engines>
+
+    <!-- android -->
+    <platform name="android">  
+        <preference name="APP_ICON_FOLDER" default="defaultapp" />
+
+        <resource-file src="res/icons/hummingbird/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
+        
+        <!-- Hook to update config.xml and copy adaptive icon files -->
+        <hook type="after_plugin_install" src="hooks/after_plugin_install/save_variables.js" />
+        <hook type="after_prepare" src="hooks/after_prepare/add_adaptive_icons_and_copy.js" />
+    </platform>
+</plugin>

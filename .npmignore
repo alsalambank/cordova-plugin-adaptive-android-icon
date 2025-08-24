@@ -1,0 +1,15 @@
+.DS_Store
+*.png
+*.log
+node_modules
+bin
+docs
+help
+scripts
+ISSUE_TEMPLATE.md
+
+src/ionic/index.ts
+src/ionic/tsconfig.json
+
+*.tgz
+

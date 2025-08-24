@@ -1,0 +1,38 @@
+{
+  "name": "cordova-plugin-adaptive-android-icon",
+  "version": "1.0.0",
+  "description": "Cordova Android Adaptive Icon Plugin",
+  "cordova": {
+    "id": "cordova-plugin-adaptive-android-icon",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "adaptive",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Al Salam Bank",
+  "license": "MIT",
+  "engines": {
+    "cordovaDependencies": {
+      "<2.9.0": {
+        "cordova": ">=6.4.0",
+        "cordova-android": ">=6.0.0",
+        "cordova-ios": ">=4.3.0"
+      },
+      "2.9.0": {
+        "cordova": ">=7.1.0",
+        "cordova-android": ">=6.3.0",
+        "cordova-ios": ">=4.4.0"
+      },
+      "2.12.0": {
+        "cordova": ">=7.1.0",
+        "cordova-android": ">=7.0.0",
+        "cordova-ios": ">=4.4.0"
+      }
+    }
+  }
+}
