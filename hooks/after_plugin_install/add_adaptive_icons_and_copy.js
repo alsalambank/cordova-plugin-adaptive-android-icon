@@ -13,11 +13,18 @@ module.exports = function (ctx) {
 
     const plugin = ctx.opts.plugin;
     if (plugin) {
-        console.log("Plugin ID:", plugin.id);
-        console.log("Plugin variables:", plugin.variables);
+        const PluginInfo = ctx.requireCordovaModule('cordova-common').PluginInfo;
+
+        const pluginDir = path.join(ctx.opts.projectRoot, 'plugins', plugin.id);
+        const pluginInfo = new PluginInfo(pluginDir);
+
+        const myVar = pluginInfo.getPreferences().APP_ICON_FOLDER;
+        console.log("APP_ICON_FOLDER from PluginInfo:", myVar);
     } else {
         console.log("No plugin object in context.opts");
     }
+
+    
 
     const projectRoot = ctx.opts.projectRoot;    
     console.log("📂 projectRoot:", projectRoot);
