@@ -27,7 +27,7 @@
     <!-- android -->
     <platform name="android">  
 
-        <resource-file src="res/icons/$APP_ICON_FOLDER/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
+        <resource-file src="res/icons/hummingbird/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
         
         
     </platform>
