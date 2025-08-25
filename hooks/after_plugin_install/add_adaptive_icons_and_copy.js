@@ -55,7 +55,7 @@ module.exports = function (ctx) {
 
                 // Add entry to config.xml
                 platform.icon.push({
-                    $: { foreground, background, monochrome, density }
+                    $: { foreground: foreground.replace(`${projectRoot}/`, ""), background, monochrome: monochrome.replace(`${projectRoot}/`, ""), density }
                 });
 
                 // Copy to platforms/android
