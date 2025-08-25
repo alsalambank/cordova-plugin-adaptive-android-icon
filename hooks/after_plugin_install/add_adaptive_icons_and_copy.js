@@ -10,6 +10,7 @@ const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 
 module.exports = function (ctx) {
     const projectRoot = ctx.opts.projectRoot;
+    console.log("📂 plugin variables:", ctx.opts.plugin.variables);
     console.log("📂 projectRoot:", projectRoot);
     const pluginRoot  = ctx.opts.plugin.dir;
     console.log("📂 pluginRoot:", pluginRoot);

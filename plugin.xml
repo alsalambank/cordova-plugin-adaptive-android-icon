@@ -21,7 +21,6 @@
         <resource-file src="res/icons/hummingbird/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
         
         <!-- Hook to update config.xml and copy adaptive icon files -->
-        <hook type="after_plugin_install" src="hooks/after_plugin_install/save_variables.js" />
         <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />
     </platform>
 </plugin>
