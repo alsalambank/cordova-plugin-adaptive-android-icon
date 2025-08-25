@@ -60,7 +60,7 @@ module.exports = function (ctx) {
 
                 fs.copyFileSync(foreground, `${targetDir}/ic_launcher_foreground.png`);
                 fs.copyFileSync(monochrome, `${targetDir}/ic_launcher_monochrome.png`);
-                fs.copyFileSync(defaultIcon, `${targetDir}/ic_launcher.png`);
+                //fs.copyFileSync(defaultIcon, `${targetDir}/ic_launcher.png`);
             });
 
             const xml = builder.buildObject(result);
