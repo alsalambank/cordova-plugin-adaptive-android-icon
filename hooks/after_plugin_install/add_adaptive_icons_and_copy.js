@@ -9,8 +9,17 @@ const builder = new xml2js.Builder();
 const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 
 module.exports = function (ctx) {
-    const projectRoot = ctx.opts.projectRoot;
-    console.log("📂 plugin variables:", ctx.opts.plugin.variables);
+    console.log(">>> after_plugin_install hook running");
+
+    const plugin = context.opts.plugin;
+    if (plugin) {
+        console.log("Plugin ID:", plugin.id);
+        console.log("Plugin variables:", plugin.variables);
+    } else {
+        console.log("No plugin object in context.opts");
+    }
+
+    const projectRoot = ctx.opts.projectRoot;    
     console.log("📂 projectRoot:", projectRoot);
     const pluginRoot  = ctx.opts.plugin.dir;
     console.log("📂 pluginRoot:", pluginRoot);
