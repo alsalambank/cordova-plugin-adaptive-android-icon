@@ -11,7 +11,7 @@ const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 module.exports = function (ctx) {
     console.log(">>> after_plugin_install hook running");
 
-    const plugin = context.opts.plugin;
+    const plugin = ctx.opts.plugin;
     if (plugin) {
         console.log("Plugin ID:", plugin.id);
         console.log("Plugin variables:", plugin.variables);
