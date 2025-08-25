@@ -14,6 +14,14 @@
     "ecosystem:cordova",
     "cordova-android"
   ],
+  "devDependencies": {
+    "xml2js": "^0.6.2"
+  },
+  "files": [
+    "plugin.xml",
+    "res/",
+    "hooks/"
+  ],
   "author": "Al Salam Bank",
   "license": "MIT",
   "engines": {
