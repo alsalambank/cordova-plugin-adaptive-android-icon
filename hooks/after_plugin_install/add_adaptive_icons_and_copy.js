@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const xml2js = require('xml2js');
-const { ConfigParser } = require("cordova-common");
 
 const parser = new xml2js.Parser();
 const builder = new xml2js.Builder();
@@ -11,26 +10,9 @@ const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 
 module.exports = function (ctx) {
     const projectRoot = ctx.opts.projectRoot;
-    const pluginId = "cordova-plugin-adaptive-android-icon";
-    const pluginRoot = projectRoot;//path.join(projectRoot, "plugins", pluginId);
+    const pluginRoot  = path.join(ctx.opts.plugin.dir);
 
     const configPath = path.join(projectRoot, "config.xml");
-
-    /*const variablesPath = path.join(projectRoot, "plugin-variables.json");
-
-    let pluginVariables = null;
-    if (fs.existsSync(variablesPath)) {
-        pluginVariables = JSON.parse(fs.readFileSync(variablesPath, "utf8"));
-        console.log("APP_ICON_FOLDER from plugin:", pluginVariables);
-    } else {
-        console.warn("⚠️ plugin-variables.json not found. Make sure the plugin install hook ran.");
-        return;
-    }
-
-    // You can also fallback to ENV
-    console.log("APP_ICON_FOLDER from ENV:", pluginVariables.APP_ICON_FOLDER);*/
-
-    // Read a <preference> from config.xml
     const appIconFolder = "hummingbird";
 
     console.log("APP_ICON_FOLDER from config.xml:", appIconFolder);
@@ -73,7 +55,7 @@ module.exports = function (ctx) {
                 });
 
                 // Copy to platforms/android
-                const targetDir = `platforms/android/app/src/main/res/mipmap-${density}`;
+                const targetDir = path.join(projectRoot, `platforms/android/app/src/main/res/mipmap-${density}`);
                 if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
 
                 fs.copyFileSync(foreground, `${targetDir}/ic_launcher_foreground.png`);
