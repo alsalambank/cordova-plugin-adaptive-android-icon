@@ -10,9 +10,13 @@ const builder = new xml2js.Builder();
 const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 
 module.exports = function (ctx) {
-    const configPath = path.join(ctx.opts.projectRoot, "config.xml");
+    const projectRoot = ctx.opts.projectRoot;
+    const pluginId = "cordova-plugin-adaptive-android-icon";
+    const pluginRoot = path.join(projectRoot, "plugins", pluginId);
 
-    /*const variablesPath = path.join(ctx.opts.projectRoot, "plugin-variables.json");
+    const configPath = path.join(projectRoot, "config.xml");
+
+    /*const variablesPath = path.join(projectRoot, "plugin-variables.json");
 
     let pluginVariables = null;
     if (fs.existsSync(variablesPath)) {
@@ -38,7 +42,7 @@ module.exports = function (ctx) {
 
     console.log("📂 Using APP_ICON_FOLDER:", appIconFolder);
     
-    const pluginResPath = `${ctx.opts.projectRoot}/res/icons/${appIconFolder}`;
+    const pluginResPath = `${pluginRoot}/res/icons/${appIconFolder}`;
 
     fs.readFile(configPath, (err, data) => {
         if (err) throw err;
