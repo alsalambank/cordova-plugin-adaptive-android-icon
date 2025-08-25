@@ -12,7 +12,7 @@ const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 module.exports = function (ctx) {
     const projectRoot = ctx.opts.projectRoot;
     const pluginId = "cordova-plugin-adaptive-android-icon";
-    const pluginRoot = path.join(projectRoot, "plugins", pluginId);
+    const pluginRoot = projectRoot;//path.join(projectRoot, "plugins", pluginId);
 
     const configPath = path.join(projectRoot, "config.xml");
 
