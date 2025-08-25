@@ -5,6 +5,7 @@
     id="cordova-plugin-adaptive-android-icon"
     version="1.0.0">
     <name>CordovaAndroidAdaptiveIconPlugin</name>
+    <preference name="APP_ICON_FOLDER" default="defaultapp" />
     <description>Cordova Plugin for configuring adaptive Android icons.</description>
     <license>MIT</license>
     <keywords>cordova,adaptive,icon,android</keywords>
@@ -16,7 +17,6 @@
 
     <!-- android -->
     <platform name="android">  
-        <preference name="APP_ICON_FOLDER" default="defaultapp" />
 
         <resource-file src="res/icons/hummingbird/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
         
