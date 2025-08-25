@@ -17,6 +17,10 @@
     <!-- Declare variable -->
     <preference name="APP_ICON_FOLDER" default="defaultapp" />
 
+    <config-file target="config.xml" parent="/widget">
+        <preference name="NEW_APP_ICON_FOLDER" value="$APP_ICON_FOLDER" />
+    </config-file>
+
     <!-- Hook to update config.xml and copy adaptive icon files -->
     <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />
 
