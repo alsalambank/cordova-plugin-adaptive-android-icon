@@ -10,7 +10,9 @@ const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 
 module.exports = function (ctx) {
     const projectRoot = ctx.opts.projectRoot;
-    const pluginRoot  = path.join(ctx.opts.plugin.dir);
+    console.log("📂 projectRoot:", projectRoot);
+    const pluginRoot  = ctx.opts.plugin.dir;
+    console.log("📂 pluginRoot:", pluginRoot);
 
     const configPath = path.join(projectRoot, "config.xml");
     const appIconFolder = "hummingbird";
@@ -45,9 +47,11 @@ module.exports = function (ctx) {
 
             densities.forEach(density => {
                 const foreground  = `${pluginResPath}/mipmap-${density}/ic_launcher_foreground.png`;
+                console.log("📂 foreground:", foreground);
                 const background  = `@color/ic_launcher_background`;
                 const monochrome  = `${pluginResPath}/mipmap-${density}/ic_launcher_monochrome.png`;
-                const defaultIcon = `${pluginResPath}/mipmap-${density}/ic_launcher.png`;
+                console.log("📂 monochrome:", monochrome);
+                //const defaultIcon = `${pluginResPath}/mipmap-${density}/ic_launcher.png`;
 
                 // Add entry to config.xml
                 platform.icon.push({
@@ -57,6 +61,7 @@ module.exports = function (ctx) {
                 // Copy to platforms/android
                 const targetDir = path.join(projectRoot, `platforms/android/app/src/main/res/mipmap-${density}`);
                 if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
+                console.log("📂 targetDir:", targetDir);
 
                 fs.copyFileSync(foreground, `${targetDir}/ic_launcher_foreground.png`);
                 fs.copyFileSync(monochrome, `${targetDir}/ic_launcher_monochrome.png`);
