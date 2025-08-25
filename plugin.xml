@@ -14,21 +14,12 @@
         <engine name="cordova-android" version=">=12.0.0"/>
     </engines>
 
-    <!-- Declare variable -->
-    <preference name="APP_ICON_FOLDER" default="defaultapp" />
-
-    <config-file target="config.xml" parent="/widget">
-        <preference name="NEW_APP_ICON_FOLDER" value="$APP_ICON_FOLDER" />
-    </config-file>
-
-    <!-- Hook to update config.xml and copy adaptive icon files -->
-    <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />
-
     <!-- android -->
     <platform name="android">  
+        <!-- Declare variable -->
+        <preference name="APP_ICON_FOLDER" default="defaultapp" />
 
-        <resource-file src="res/icons/hummingbird/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
-        
-        
+        <!-- Hook to update config.xml and copy adaptive icon files -->
+        <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />        
     </platform>
 </plugin>

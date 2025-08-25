@@ -9,11 +9,19 @@ const builder = new xml2js.Builder();
 const densities = ['mdpi','hdpi','xhdpi','xxhdpi','xxxhdpi'];
 
 module.exports = function (ctx) {
-    console.log(">>> after_plugin_install hook running");
+    const projectRoot = ctx.opts.projectRoot;    
+    console.log("📂 projectRoot:", projectRoot);
+    const pluginRoot  = ctx.opts.plugin.dir;
+    console.log("📂 pluginRoot:", pluginRoot);
 
+    // Keep track of the app icon folder name, fetched later on from installation variable
+    let appIconFolder = null;
+
+    // Get plugin details
     const plugin = ctx.opts.plugin;
+
     if (plugin) {
-        const fetchJsonPath = path.join(ctx.opts.projectRoot, "plugins", "fetch.json");
+        const fetchJsonPath = path.join(projectRoot, "plugins", "fetch.json");
         const fetchData = JSON.parse(fs.readFileSync(fetchJsonPath, "utf8"));
 
         const pluginId = plugin.id;
@@ -21,26 +29,21 @@ module.exports = function (ctx) {
 
         console.log(">>> Vars from fetch.json:", vars);
         console.log("APP_ICON_FOLDER:", vars.APP_ICON_FOLDER);
+
+        // Update the app icon folder to the installation variable
+        appIconFolder = vars.APP_ICON_FOLDER;
     } else {
-        console.log("No plugin object in context.opts");
+        console.warn("⚠️ No plugin object found in ctx.opts");
+        return;
     }
-    const projectRoot = ctx.opts.projectRoot;    
-    console.log("📂 projectRoot:", projectRoot);
-    const pluginRoot  = ctx.opts.plugin.dir;
-    console.log("📂 pluginRoot:", pluginRoot);
-
-    const configPath = path.join(projectRoot, "config.xml");
-    const appIconFolder = "hummingbird";
-
-    console.log("APP_ICON_FOLDER from config.xml:", appIconFolder);
 
     if (!appIconFolder) {
         console.warn("⚠️ No APP_ICON_FOLDER preference found in config.xml or plugin.xml");
         return;
     }
 
-    console.log("📂 Using APP_ICON_FOLDER:", appIconFolder);
     
+    const configPath = path.join(projectRoot, "config.xml");
     const pluginResPath = `${pluginRoot}/res/icons/${appIconFolder}`;
 
     fs.readFile(configPath, (err, data) => {
@@ -56,6 +59,9 @@ module.exports = function (ctx) {
                 result.widget.platform = result.widget.platform || [];
                 result.widget.platform.push(platform);
             }
+
+            // Copy background color xml
+            fs.copyFileSync(`${pluginResPath}/values/ic_launcher_background.xml`, `${projectRoot}/platforms/android/app/src/main/res/values/ic_launcher_background.xml`);
 
             // Remove existing adaptive-icon entries
             platform.icon = [];
