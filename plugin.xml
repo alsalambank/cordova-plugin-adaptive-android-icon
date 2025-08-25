@@ -5,7 +5,6 @@
     id="cordova-plugin-adaptive-android-icon"
     version="1.0.0">
     <name>CordovaAndroidAdaptiveIconPlugin</name>
-    <preference name="APP_ICON_FOLDER" default="defaultapp" />
     <description>Cordova Plugin for configuring adaptive Android icons.</description>
     <license>MIT</license>
     <keywords>cordova,adaptive,icon,android</keywords>
@@ -15,12 +14,22 @@
         <engine name="cordova-android" version=">=12.0.0"/>
     </engines>
 
+    <!-- Declare variable -->
+    <preference name="APP_ICON_FOLDER" default="defaultapp" />
+
+    <!-- Example usage so Cordova keeps it -->
+    <config-file target="config.xml" parent="/widget">
+        <preference name="APP_ICON_FOLDER" value="$APP_ICON_FOLDER" />
+    </config-file>
+
+    <!-- Hook to update config.xml and copy adaptive icon files -->
+    <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />
+
     <!-- android -->
     <platform name="android">  
 
         <resource-file src="res/icons/hummingbird/values/ic_launcher_background.xml" target="res/values/ic_launcher_background.xml"/>
         
-        <!-- Hook to update config.xml and copy adaptive icon files -->
-        <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />
+        
     </platform>
 </plugin>
