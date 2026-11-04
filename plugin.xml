@@ -22,4 +22,12 @@
         <!-- Hook to update config.xml and copy adaptive icon files -->
         <hook type="after_plugin_install" src="hooks/after_plugin_install/add_adaptive_icons_and_copy.js" />        
     </platform>
+    <platform name="ios">
+        <edit-config file="*-Info.plist" target="CFBundleName" mode="overwrite">
+            <string>ASB Business UAT</string>
+        </edit-config>
+      <edit-config file="*-Info.plist" target="CFBundleDisplayName" mode="overwrite">
+        <string>ASB Business UAT</string>
+      </edit-config>
+    </platform>
 </plugin>
